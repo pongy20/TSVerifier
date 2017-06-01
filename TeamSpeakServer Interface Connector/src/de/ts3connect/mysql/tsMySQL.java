@@ -77,5 +77,20 @@ public class tsMySQL {
 			}
 		}
 	}
+	public static String getParameter(String parameter, UUID uuid) {
+		if (didUserExist(uuid)) {
+			try {
+				PreparedStatement ps = mysql.getConnection().prepareStatement("SELECT * FROM " + table_name + " WHERE UUID = ?");
+				ps.setString(1, uuid.toString());
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					return rs.getString(parameter);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
 	
 }

@@ -30,12 +30,12 @@ public class verifyCommand implements CommandExecutor {
 							if (GID != -1) {
 								TSServerStats.api.addClientToServerGroup(GID, c.getChannelGroupId());
 								tsMySQL.insertUser(p.getName(), p.getUniqueId(), args[1], GID);
-								p.sendMessage(ChatColor.GREEN + " TeamSpeak Servergroup have been set!");
+								p.sendMessage(ChatColor.GREEN + "TeamSpeak Servergroup have been set!");
 							} else {
 								p.sendMessage(ChatColor.RED + "Internal Error!");
 							}
 						} else {
-							p.sendMessage(ChatColor.RED + " We don't know anything about that TSID.");
+							p.sendMessage(ChatColor.RED + "We don't know anything about that TSID.");
 						}
 					} else {
 						p.sendMessage(ChatColor.RED + "/verify <tsname>");
@@ -46,12 +46,16 @@ public class verifyCommand implements CommandExecutor {
 			} else if (args[0].equalsIgnoreCase("unverify")) {
 				if (p.hasPermission("ts3.unverify")) {
 					if (tsMySQL.didUserExist(p.getUniqueId())) {
-						//TODO: CODe
+						Client c = TSServerStats.api.getClientByUId(tsMySQL.getParameter("TSID", p.getUniqueId()));
+						tsMySQL.deleteUser(p.getUniqueId());
+						PermissionUser user = PermissionsEx.getUser(p);
+						TSServerStats.api.removeClientFromServerGroup(TSServerStats.getTSGroupID(user), c.getDatabaseId());
+						p.sendMessage(ChatColor.RED + "You are no longer verified!");
 					}
 				}
 			}
 		} else {
-			sender.sendMessage(ChatColor.RED  + " You must be a Player to perform this command!");
+			sender.sendMessage(ChatColor.RED  + "You must be a Player to perform this command!");
 		}
 		
 		return true;
