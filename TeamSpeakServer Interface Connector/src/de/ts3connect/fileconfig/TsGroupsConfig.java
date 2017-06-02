@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.apache.logging.log4j.core.jmx.Server;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.github.theholywaffle.teamspeak3.api.wrapper.ServerGroup;
@@ -43,16 +42,8 @@ public class TsGroupsConfig {
     }
 
     public static void readConfig() {
-        YamlConfiguration cfg = getConfiguration();	
+        //YamlConfiguration cfg = getConfiguration();	
         
-        //TODO: CommunicationsLogging
-        
-        
-        @SuppressWarnings("unchecked")
-		ArrayList<String> groups = (ArrayList<String>) cfg.get("groups");
-        for (String s : groups) {
-        	
-        }
     }
 	
 }

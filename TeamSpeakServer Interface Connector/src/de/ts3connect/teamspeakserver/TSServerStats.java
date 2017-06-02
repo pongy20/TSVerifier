@@ -26,6 +26,7 @@ public class TSServerStats {
 		query = new TS3Query(config);
 		api = query.getApi();
 	}
+	@SuppressWarnings("deprecation")
 	public static int getTSGroupID(PermissionUser p) {
 		if (p.getGroups()[0] != null) {
 			PermissionGroup pexgroup = p.getGroups()[0];
