@@ -1,4 +1,4 @@
-name:TSVerifier
+name: TSVerifier
 author: Eric Dupont
 main: de.ts3connect.Main
 version: 1.0.1

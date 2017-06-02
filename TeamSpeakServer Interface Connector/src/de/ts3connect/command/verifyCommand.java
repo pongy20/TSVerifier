@@ -53,6 +53,8 @@ public class verifyCommand implements CommandExecutor {
 						p.sendMessage(ChatColor.RED + "You are no longer verified!");
 					}
 				}
+			} else {
+				p.sendMessage(ChatColor.RED + " /ts <verify/unverify> <tsid>");
 			}
 		} else {
 			sender.sendMessage(ChatColor.RED  + "You must be a Player to perform this command!");
