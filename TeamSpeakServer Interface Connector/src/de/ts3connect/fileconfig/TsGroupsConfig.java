@@ -58,6 +58,7 @@ public class TsGroupsConfig {
     		for (ServerGroup group : TSServerStats.api.getServerGroups()) {
     			if (group.getId() == id) {
     				TSServerStats.servergroupsHash.put(name, group);
+    				
     			}
     		}
     	}
