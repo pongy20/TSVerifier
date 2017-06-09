@@ -1,6 +1,7 @@
 package de.ts3connect.teamspeakserver;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.github.theholywaffle.teamspeak3.TS3Api;
@@ -18,6 +19,7 @@ public class TSServerStats {
 	public static TS3Query query;
 	public static TS3Api api;
 	public static List<ServerGroup> servergroups = new ArrayList<>();
+	public static HashMap<String, ServerGroup> servergroupsHash = new HashMap<>();
 	
 	public static void registerServer() {
 		TsServerConfig.readConfig();

@@ -3,6 +3,7 @@ package de.ts3connect.fileconfig;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -20,7 +21,7 @@ public class TsGroupsConfig {
 		return groups;
 	}
 	private static File getConfigFile() {
-        return new File("plugins/TS3ServerInterface", "tsservergroups.yml");
+        return new File("plugins/TS3ServerInterface", "groups.yml");
     }
 
     private static YamlConfiguration getConfiguration() {
@@ -31,9 +32,8 @@ public class TsGroupsConfig {
         YamlConfiguration cfg = getConfiguration();
         cfg.options().copyDefaults(true); 
        
-        for (ServerGroup group : getGroups()) {
-        	cfg.addDefault(group.getName(), group.getId());
-        }
+        List<String> groups = new ArrayList<>();
+        cfg.set("groups", groups);
         try {
             cfg.save(getConfigFile());
         } catch (IOException e) {
@@ -41,9 +41,26 @@ public class TsGroupsConfig {
         }
     }
 
-    public static void readConfig() {
-        //YamlConfiguration cfg = getConfiguration();	
-        
+    @SuppressWarnings("unchecked")
+	public static void readConfig() {
+    	YamlConfiguration cfg = getConfiguration();
+    	
+    	List<String> groups = new ArrayList<>();
+    	
+    	if (cfg.get("groups") != null) {
+    		groups = (List<String>) cfg.get("groups");
+    	}
+    	for (String s : groups) {
+    		String[] parts = s.split(":");
+    		String name = parts[0];
+    		int id = Integer.parseInt(parts[1]);
+    		
+    		for (ServerGroup group : TSServerStats.api.getServerGroups()) {
+    			if (group.getId() == id) {
+    				TSServerStats.servergroupsHash.put(name, group);
+    			}
+    		}
+    	}
     }
 	
 }
