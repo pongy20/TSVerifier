@@ -33,7 +33,7 @@ public class TsGroupsConfig {
         cfg.options().copyDefaults(true); 
        
         List<String> groups = new ArrayList<>();
-        cfg.set("groups", groups);
+        cfg.addDefault("groups", groups);
         try {
             cfg.save(getConfigFile());
         } catch (IOException e) {
