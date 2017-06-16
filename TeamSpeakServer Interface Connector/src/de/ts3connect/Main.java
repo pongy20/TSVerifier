@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import de.ts3connect.command.verifyCommand;
 import de.ts3connect.events.PlayerEnterServer;
+import de.ts3connect.fileconfig.TsGroupsConfig;
 import de.ts3connect.fileconfig.TsServerConfig;
 import de.ts3connect.fileconfig.mySQLConfig;
 import de.ts3connect.mysql.mysql;
@@ -15,6 +16,7 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+		TsGroupsConfig.setConfig();
 		
 		mySQLConfig.setConfig();
 		mySQLConfig.readConfig();

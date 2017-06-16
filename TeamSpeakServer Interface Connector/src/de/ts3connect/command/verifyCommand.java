@@ -28,17 +28,17 @@ public class verifyCommand implements CommandExecutor {
 							Client c = TSServerStats.api.getClientByUId(args[1]);
 							int GID = TSServerStats.getTSGroupID(user);
 							if (GID != -1) {
-								TSServerStats.api.addClientToServerGroup(GID, c.getChannelGroupId());
+								TSServerStats.api.addClientToServerGroup(GID, c.getDatabaseId());
 								tsMySQL.insertUser(p.getName(), p.getUniqueId(), args[1], GID);
 								p.sendMessage(ChatColor.GREEN + "TeamSpeak Servergroup have been set!");
 							} else {
 								p.sendMessage(ChatColor.RED + "Internal Error!");
 							}
 						} else {
-							p.sendMessage(ChatColor.RED + "We don't know anything about that TSID.");
+							p.sendMessage(ChatColor.RED + "We don't know anything about that Teamspeak Identity.");
 						}
 					} else {
-						p.sendMessage(ChatColor.RED + "/verify <tsname>");
+						p.sendMessage(ChatColor.RED + "/verify <ts identity>");
 					}
 				} else {
 					p.sendMessage(ChatColor.RED + "You don't have enough permssions to do that!");

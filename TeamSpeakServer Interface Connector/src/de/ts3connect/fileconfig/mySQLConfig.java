@@ -3,6 +3,7 @@ package de.ts3connect.fileconfig;
 import java.io.File;
 import java.io.IOException;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import de.ts3connect.mysql.mysql;
@@ -19,7 +20,7 @@ public class mySQLConfig {
     }
 
     public static void setConfig() {
-        YamlConfiguration cfg = getConfiguration();
+    	FileConfiguration cfg = getConfiguration();
         cfg.options().copyDefaults(true); 
         
         cfg.addDefault("host", "host");
@@ -35,7 +36,7 @@ public class mySQLConfig {
     }
 
     public static void readConfig() {
-        YamlConfiguration cfg = getConfiguration();	
+    	FileConfiguration cfg = getConfiguration();	
         
         mysql.username = cfg.getString("username");
         mysql.password = cfg.getString("password");

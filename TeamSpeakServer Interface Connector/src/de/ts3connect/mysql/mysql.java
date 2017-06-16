@@ -46,7 +46,7 @@ public class mysql {
 	}
 	public static void createTable() {
 		try {
-			PreparedStatement ps = mysql.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS " + table_name + " (username VARCHAR(100), UUID VARCHAR(100), TSID VARCHAR(100), GID INT(100))");
+			PreparedStatement ps = mysql.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS " + table_name + " (username VARCHAR(255) NOT NULL, UUID VARCHAR(255) NOT NULL PRIMARY_KEY, TSID VARCHAR(255) NOT NULL, GID INT(11) NOT NULL)");
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

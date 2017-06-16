@@ -19,14 +19,18 @@ public class TSServerStats {
 	public static TS3Config config;
 	public static TS3Query query;
 	public static TS3Api api;
+	public static String username;
+	public static String password;
 	public static HashMap<String, ServerGroup> servergroupsHash = new HashMap<>();
 	
 	public static void registerServer() {
 		TsServerConfig.readConfig();
 		
 		query = new TS3Query(config);
+		query.connect();
 		api = query.getApi();
-		TsGroupsConfig.setConfig();
+		api.login(username, password);
+		
 		TsGroupsConfig.readConfig();
 	}
 	@SuppressWarnings("deprecation")

@@ -55,7 +55,7 @@ public class tsMySQL {
 	public static void insertUser(String username, UUID uuid, String TSID, int groupID) {
 		if(!didUserExist(uuid)) {
 			try {
-				PreparedStatement ps = mysql.getConnection().prepareStatement("INSERT INFO " + table_name + " (username, UUID, TSID, GID) VALUES (?,?,?,?)");
+				PreparedStatement ps = mysql.getConnection().prepareStatement("INSERT INTO " + table_name + " (username, UUID, TSID, GID) VALUES (?,?,?,?)");
 				ps.setString(1, username);
 				ps.setString(2, uuid.toString());
 				ps.setString(3, TSID);

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.github.theholywaffle.teamspeak3.api.wrapper.ServerGroup;
@@ -29,10 +30,12 @@ public class TsGroupsConfig {
     }
 
     public static void setConfig() {
-        YamlConfiguration cfg = getConfiguration();
+    	FileConfiguration cfg = getConfiguration();
         cfg.options().copyDefaults(true); 
        
         List<String> groups = new ArrayList<>();
+        groups.add("Admin:104");
+        groups.add("Developer:104");
         cfg.addDefault("groups", groups);
         try {
             cfg.save(getConfigFile());
@@ -43,7 +46,7 @@ public class TsGroupsConfig {
 
     @SuppressWarnings("unchecked")
 	public static void readConfig() {
-    	YamlConfiguration cfg = getConfiguration();
+    	FileConfiguration cfg = getConfiguration();
     	
     	List<String> groups = new ArrayList<>();
     	
